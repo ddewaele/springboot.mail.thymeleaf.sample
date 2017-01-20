@@ -12,7 +12,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MailSender {
+public class EmailSender {
 
     private static final Logger logger = LoggerFactory.getLogger(ApplicationLoader.class);
 
@@ -20,7 +20,7 @@ public class MailSender {
     private MailTemplateHandler mailTemplateHandler;
 
     @Autowired
-    public MailSender(JavaMailSender javaMailSender, MailTemplateHandler mailTemplateHandler) {
+    public EmailSender(JavaMailSender javaMailSender, MailTemplateHandler mailTemplateHandler) {
         this.javaMailSender = javaMailSender;
         this.mailTemplateHandler = mailTemplateHandler;
     }

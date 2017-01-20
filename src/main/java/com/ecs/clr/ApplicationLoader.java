@@ -1,7 +1,7 @@
 package com.ecs.clr;
 
 
-import com.ecs.mail.MailSender;
+import com.ecs.mail.EmailSender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +15,11 @@ public class ApplicationLoader implements CommandLineRunner {
     private static final Logger logger = LoggerFactory.getLogger(ApplicationLoader.class);
 
     @Autowired
-    private MailSender mailClient;
+    private EmailSender emailSender;
 
     @Override public void run(String... strings) throws Exception {
         logger.info("About to send and email");
-        mailClient.prepareAndSend("recipient@someEmailDomain.com","Hello from Spring Boot");
+        emailSender.prepareAndSend("recipient@someEmailDomain.com","Hello from Spring Boot");
         logger.info("Email request sent...");
     }
 }
