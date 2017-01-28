@@ -1,6 +1,5 @@
 package com.ecs.mail;
 
-import com.ecs.clr.ApplicationLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +10,12 @@ import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
+
 @Service
 public class EmailSender {
 
-    private static final Logger logger = LoggerFactory.getLogger(ApplicationLoader.class);
+    private static final Logger logger = LoggerFactory.getLogger(EmailSender.class);
 
     private JavaMailSender javaMailSender;
     private MailTemplateHandler mailTemplateHandler;
@@ -26,20 +27,19 @@ public class EmailSender {
     }
 
     @Async
-    public void prepareAndSend(String recipient, String message) {
+    public void prepareAndSend(String[] recipients, String subject, Map<String,Object> ctx) {
         MimeMessagePreparator messagePreparator = mimeMessage -> {
             MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
             messageHelper.setFrom("from@someEmailDomain.com");
-            messageHelper.setTo(recipient);
-            messageHelper.setSubject("Sample mail subject");
-            String content = mailTemplateHandler.generateContent(message);
+            messageHelper.setTo(recipients);
+            messageHelper.setSubject(subject);
+            String content = mailTemplateHandler.generateContent(ctx);
             messageHelper.setText(content, true);
         };
         try {
             javaMailSender.send(messagePreparator);
         } catch (MailException e) {
-            // runtime exception; compiler will not force you to handle it
-            logger.error("Error occured while attempting to send an email");
+            logger.error("Error occured while attempting to send an email",e);
         }
     }
 

@@ -3,14 +3,3 @@ spring:
     host: localhost
     port: 25
     protocol: smtp
-#  mail:
-#    host: smtp.gmail.com
-#    port: 587
-#    protocol: smtp
-#    username: GMAIL USER NAME
-#    password: GMAIL PASSWORD
-#    tls: true
-#    properties.mail.smtp:
-#        auth: true
-#        starttls.enable: true
-#        ssl.trust: smtp.gmail.com
