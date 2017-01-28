@@ -60,6 +60,8 @@
 				<configuration>
 					<imageName>ddewaele/${project.name}</imageName>
 					<dockerDirectory>src/main/docker</dockerDirectory>
+					<serverId>docker-hub</serverId>
+					<registryUrl>https://index.docker.io/v1/</registryUrl>
 					<resources>
 						<resource>
 							<targetPath>/</targetPath>

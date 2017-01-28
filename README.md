@@ -32,14 +32,15 @@ docker run --name springboot.mail.thymeleaf.sample -t \
 ddewaele/springboot.mail.thymeleaf.sample
 ```
 
+You can also provide some additional options, like the SMTP host, or the location of the external templates
+
 ```
 docker run --name springboot.mail.thymeleaf.sample -t \
 -p 8080:8080 \
 -v /tmp/logs:/var/log \
--v /tmp/spring-config/:/spring-config/ \
--v /tmp/thymeleaf/templates/:/etc/thymeleaf/templates/ \
+-v /root/thymeleaf/templates/:/etc/thymeleaf/templates/ \
 -e "SPRING_PROFILES_ACTIVE=ext" \
--e "SPRING_CONFIG_LOCATION=/spring-config/" \
+-e "SPRING_MAIL_HOST=172.17.0.1" \
 ddewaele/springboot.mail.thymeleaf.sample
 ```
 
