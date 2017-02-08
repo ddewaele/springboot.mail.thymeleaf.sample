@@ -3,7 +3,7 @@ Simple example showing how to send mails using Spring Boot using Thymeleaf templ
 The application provides a rest interface allowing you to send emails.
 
 ```
-curl -v -X POST -H "Content-Type: application/json" -d '{"to":"recipient@someDomain.com","subject":"The subject","message":"This is the message"}'  "http://localhost:8080/sendEmail"
+curl -v -X POST -H "Content-Type: application/json" -d '{"from":"sender@someDomain.com",to":"recipient@someDomain.com","subject":"The subject","message":"This is the message"}'  "http://localhost:8080/sendEmail"
 ```
 
 ## FakeSMTP

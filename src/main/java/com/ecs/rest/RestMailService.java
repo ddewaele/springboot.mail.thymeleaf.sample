@@ -24,11 +24,12 @@ public class RestMailService {
         logger.info("About to send and email");
         Map<String,Object> ctx = new HashMap<>();
         ctx.put("message",payload.message);
-        emailSender.prepareAndSend(payload.to.split(","),payload.subject,ctx);
+        emailSender.prepareAndSend(payload.from,payload.to.split(","),payload.subject,ctx);
         logger.info("Email request sent...");
     }
 
     static class Payload {
+        public String from;
         public String to;
         public String subject;
         public String message;

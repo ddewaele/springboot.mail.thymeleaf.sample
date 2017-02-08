@@ -27,10 +27,10 @@ public class EmailSender {
     }
 
     @Async
-    public void prepareAndSend(String[] recipients, String subject, Map<String,Object> ctx) {
+    public void prepareAndSend(String from, String[] recipients, String subject, Map<String,Object> ctx) {
         MimeMessagePreparator messagePreparator = mimeMessage -> {
             MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
-            messageHelper.setFrom("from@someEmailDomain.com");
+            messageHelper.setFrom(from);
             messageHelper.setTo(recipients);
             messageHelper.setSubject(subject);
             String content = mailTemplateHandler.generateContent(ctx);
